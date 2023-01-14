@@ -10,6 +10,7 @@ using HamburgerApp.DataAccess.Abstract;
 using HamburgerApp.Business.AutooMapper;
 using HamburgerApp.Business.Services.HamburgerMenuService;
 using HamburgerApp.Business.Services.ExtraMaterialService;
+using HamburgerApp.Business.Services.OrderService;
 
 namespace HamburgerApp.Business.IoC
 {
@@ -24,6 +25,7 @@ namespace HamburgerApp.Business.IoC
             //services burası açılacak
             builder.RegisterType<HamburgerMenuService>().As<IHamburgerMenuService>().InstancePerLifetimeScope();
             builder.RegisterType<ExtraMaterialService>().As<IExtraMaterialService>().InstancePerLifetimeScope();
+            builder.RegisterType<OrderServices>().As<IOrderServices>().InstancePerLifetimeScope();
 
             //automapper
             builder.Register(context => new MapperConfiguration(cfg =>

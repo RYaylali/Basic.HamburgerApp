@@ -26,7 +26,7 @@ namespace HamburgerApp.Areas.Admin.Controllers
 		{
 			ViewBag.Menu = db.Products.Where(p => p.Roles == Roles.Menu).ToList();
 			ViewBag.Extra = db.Products.Where(p => p.Roles == Roles.Extra).ToList();
-			//ViewBag.Menu = _hamburgerMenuService.GetHamburgers();
+			//ViewBag.Menu = _hamburgerMenuService.GetHamburgers(); 
 			return View();
 		}
 		[HttpPost]
@@ -41,7 +41,7 @@ namespace HamburgerApp.Areas.Admin.Controllers
 				if (responseTask.IsCompletedSuccessfully)
 				{
 					await _hamburgerMenuService.CreateHamburgerMenu(addBurgerMenuDTO);
-					return View();
+					return RedirectToAction("AddHamburgerMenu");
 				}
 				else
 				{
@@ -49,27 +49,18 @@ namespace HamburgerApp.Areas.Admin.Controllers
 				}
 			}
 		}
-		public async Task<IActionResult> AddExtraMaterial()
-		{
-			return View();
-		}
+		
 		[HttpPost]
 		public async Task<IActionResult> AddExtraMaterial(AddExtraMaterialDTO addExtraMaterialDTO)
 		{
 			if (ModelState.IsValid)
 			{
 				await _extraMaterialService.CreateExtra(addExtraMaterialDTO);
-				return View();
+				return RedirectToAction("AddHamburgerMenu");
 			}
 			return View(addExtraMaterialDTO);
 		}
-		public async Task<IActionResult> ListOfExtras()
-		{
-            //var extraList = await _extraMaterialService.GetExtras(); niye hata verdi 
-            ViewBag.Extra = db.Products.Where(p => p.Roles == Roles.Extra).ToList();
-			return View();
-
-		}
+		
        
     }
 }

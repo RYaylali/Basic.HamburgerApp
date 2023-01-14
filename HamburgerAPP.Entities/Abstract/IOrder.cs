@@ -13,6 +13,7 @@ namespace HamburgerApp.Entities.Abstract
         Guid Id { get; set; }
         User User { get; set; }
         decimal TotalPrice { get; set; }
+        bool Available { get; set; }
        
 
     }

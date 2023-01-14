@@ -1,6 +1,8 @@
 using Autofac;
+using Autofac.Core;
 using Autofac.Extensions.DependencyInjection;
 using HamburgerApp.Business.IoC;
+using HamburgerApp.Business.Services.OrderService;
 using HamburgerApp.DataAccess.EntityFramework.Context;
 using HamburgerApp.Models.SeedDataModel;
 using Microsoft.EntityFrameworkCore;
@@ -18,7 +20,7 @@ builder.Host.ConfigureContainer<ContainerBuilder>(builder =>
 {
 	builder.RegisterModule(new DependencyResolver());
 });
-
+builder.Services.AddScoped<IOrderServices, OrderServices>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -28,6 +30,7 @@ if (!app.Environment.IsDevelopment())
 	// The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
 	app.UseHsts();
 }
+
 SeedData.Seed(app);
 app.UseHttpsRedirection();
 app.UseStaticFiles();

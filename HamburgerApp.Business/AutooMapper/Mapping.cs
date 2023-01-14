@@ -19,6 +19,9 @@ namespace HamburgerApp.Business.AutooMapper
             CreateMap<Product,ListOfBurgersVM>().ReverseMap();
             CreateMap<Product,ListOfExtraMaterialVM>().ReverseMap();
             CreateMap<AddExtraMaterialDTO,ListOfExtraMaterialVM>().ReverseMap();
+            CreateMap<Order,AddOrderDTO>().ReverseMap();
+            CreateMap<Order,ListOfOrderVM>().ReverseMap();
+            CreateMap<AddOrderDTO,ListOfOrderVM>().ReverseMap();
         }
     }
 }
